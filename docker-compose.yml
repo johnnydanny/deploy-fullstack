@@ -18,7 +18,10 @@ services:
       - mongo
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api
     container_name: frontend
     ports:
       - "80:80"
