@@ -14,14 +14,20 @@ services:
       - "5000:5000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/todos
+    volumes:
+      - ./backend:/app
     depends_on:
       - mongo
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     container_name: frontend
     ports:
-      - "80:80"
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
     depends_on:
       - backend
 

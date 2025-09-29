@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/todos";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function App() {
   const [todos, setTodos] = useState([]);
