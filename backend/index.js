@@ -34,9 +34,19 @@ app.get("/api/todos", async (req, res) => {
 });
 
 app.post("/api/todos", async (req, res) => {
-  const newTodo = new Todo(req.body);
-  const saved = await newTodo.save();
-  res.json(saved);
+  try {
+    const count = await Todo.countDocuments();
+    if (count >= 20) {
+      return res.status(400).json({ message: "Cannot add more than 20 todos" });
+    }
+
+    const newTodo = new Todo(req.body);
+    const saved = await newTodo.save();
+    res.json(saved);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
 app.put("/api/todos/:id", async (req, res) => {
