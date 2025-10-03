@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Todo Application new changes</h1>
+      <h1>Bro G</h1>
       <input 
         type="text"
         value={newTodo}
